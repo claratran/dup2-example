@@ -10,7 +10,11 @@
  */
 
 #include <cstdlib>
+#include <errno.h>
 #include <iostream>
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #include <unistd.h>
 #include <fcntl.h>
 
@@ -46,7 +50,7 @@ int main() {
 
     // Execute 'ls -l'; all output should get written to the file, with no extra
     // work required.
-    execl("/bin/ls", "ls", "-l", 0);
+    execl("/bin/ls", "ls", "-l", NULL);
 
     // Since exec clobbers the currently running program (in this case, with the
     // 'ls' command), the only way we reach this point is if the execl command
